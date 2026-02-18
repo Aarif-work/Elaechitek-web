@@ -1,0 +1,258 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary: #050a18;
+  --secondary: #f5f5f5;
+  --accent: #22d3ee;
+  --accent-alt: #ef4444;
+  --text: #ffffff;
+  --text-muted: #94a3b8;
+  --bg: #050a18;
+  --font-main: 'Outfit', sans-serif;
+  --font-title: 'Cinzel', serif;
+  --transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100vh;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-main);
+  overflow-x: hidden;
+}
+
+section {
+  padding: 15vh 5%;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+h1,
+h2,
+h3,
+.logo {
+  font-family: var(--font-title);
+  font-weight: 400;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+/* Glassmorphism */
+.glass {
+  background: var(--glass);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+}
+
+/* Line mask reveals */
+.line-mask {
+  display: block;
+  overflow: hidden;
+  margin-bottom: 0.2em;
+}
+
+.line-inner {
+  display: block;
+}
+
+/* Parallax Containers */
+.parallax-wrap {
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  overflow: hidden;
+  border-radius: 20px;
+  margin: 60px 0;
+}
+
+.parallax-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 140%;
+  object-fit: cover;
+  will-change: transform;
+}
+
+/* Design Tokens from old version */
+.btn {
+  display: inline-block;
+  padding: 14px 40px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 30px;
+  font-weight: 500;
+  cursor: pointer;
+  border: none;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.btn:hover {
+  background: var(--accent);
+  transform: scale(1.05);
+}
+
+.section-tag {
+  color: var(--accent);
+  letter-spacing: 0.3em;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
+  display: block;
+}
+
+.hero-title {
+  font-size: clamp(3.5rem, 10vw, 8rem);
+  text-transform: none;
+}
+
+.hero-subtitle {
+  font-size: clamp(1.5rem, 5vw, 3.5rem);
+  opacity: 0.7;
+  font-weight: 300;
+  margin-bottom: 30px;
+  text-transform: none;
+}
+
+/* Duda link style */
+.slide-link {
+  position: relative;
+  width: 75px;
+  height: 53px;
+  display: flex;
+  align-items: center;
+}
+
+.slide-link__circ {
+  width: 53px;
+  height: 53px;
+  border-radius: 50%;
+  border: 1px solid var(--text);
+}
+
+.slide-link__line {
+  position: absolute;
+  left: 0;
+  width: 64px;
+  height: 2px;
+  background: var(--text);
+}
+
+/* 3D Tilt Cards Section */
+.cards-container {
+  padding: 80px 5%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+}
+
+.card-wrap {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.card-wrap:hover .card-info {
+  transform: translateY(0);
+}
+
+.card-wrap:hover .card-info p {
+  opacity: 1;
+}
+
+.card-wrap:hover .card-info,
+.card-wrap:hover .card-info p {
+  transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card-wrap:hover .card-bg {
+  opacity: 0.8;
+  transition: 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.tilt-card {
+  position: relative;
+  width: 320px;
+  height: 400px;
+  background-color: #000;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow:
+    rgba(0, 0, 0, 0.66) 0 30px 60px 0,
+    inset #333 0 0 0 5px,
+    inset rgba(255, 255, 255, 0.4) 0 0 0 1px;
+  transition: 0.8s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  transform-style: preserve-3d;
+}
+
+.card-bg {
+  opacity: 0.4;
+  position: absolute;
+  top: -20px;
+  left: -20px;
+  width: 120%;
+  height: 120%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transition: 0.8s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+  pointer-events: none;
+}
+
+.card-info {
+  padding: 30px;
+  position: absolute;
+  bottom: 0;
+  color: #fff;
+  transform: translateY(40%);
+  transition: 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+  z-index: 2;
+  width: 100%;
+}
+
+.card-info h3 {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  margin-bottom: 15px;
+  text-shadow: rgba(0, 0, 0, 0.8) 0 5px 10px;
+}
+
+.card-info p {
+  opacity: 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--text-muted);
+  text-shadow: rgba(0, 0, 0, 1) 0 2px 3px;
+  transition: 0.6s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.card-info::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+  z-index: -1;
+  pointer-events: none;
+}
