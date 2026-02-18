@@ -121,11 +121,12 @@ const Navbar = () => {
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'glass py-4' : 'py-8'}`} style={{ top: 0, left: 0 }}>
       <div className="container px-5 flex justify-between items-center">
-        <a href="#" className="flex items-center gap-4">
-          <div style={{ width: '50px', height: '50px', background: 'white', borderRadius: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-            <span style={{ fontSize: '0.5rem', color: '#000', fontWeight: 800, lineHeight: 1 }}>YOUR</span>
-            <span style={{ fontSize: '0.5rem', color: '#000', fontWeight: 800, lineHeight: 1 }}>LOGO</span>
+        <a href="#" className="flex items-center gap-4 logo-wrap">
+          <div style={{ width: '50px', height: '50px', background: 'white', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.2)' }}>
+            <span style={{ fontSize: '0.6rem', color: '#000', fontWeight: 800, lineHeight: 1 }}>YOUR</span>
+            <span style={{ fontSize: '0.6rem', color: '#000', fontWeight: 800, lineHeight: 1 }}>LOGO</span>
           </div>
+          <span className="font-title text-xl tracking-tighter" style={{ display: scrolled ? 'none' : 'block' }}>ELARCHITEK</span>
         </a>
 
         <div className="hidden md:flex items-center gap-10">
@@ -134,14 +135,14 @@ const Navbar = () => {
               {item}
             </a>
           ))}
-          <div style={{ height: '36px', width: '140px', borderRadius: '18px', border: '1px solid rgba(255,255,255,0.2)', display: 'flex', alignItems: 'center', padding: '0 15px', cursor: 'pointer' }}>
-            <Search size={16} color="white" style={{ marginRight: '10px' }} />
+          <div className="search-bar">
+            <Search size={16} color="white" />
             <span style={{ fontSize: '0.8rem', opacity: 0.5 }}>Search</span>
           </div>
         </div>
 
         <div className="md:hidden">
-          <Menu size={24} color="white" />
+          <Menu size={24} color="white" cursor="pointer" />
         </div>
       </div>
     </nav>
@@ -325,24 +326,82 @@ const InnovationHub = () => (
   </section>
 );
 
-const Outreach = () => (
-  <section id="outreach" style={{ background: '#0a0f1d' }}>
-    <div className="container">
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '100px', alignItems: 'center' }}>
-        <div className="reveal">
-          <span className="section-tag">Social Impact</span>
-          <h2 style={{ fontSize: '4rem', marginBottom: '30px' }}><LineReveal>Educational Outreach</LineReveal></h2>
-          <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', lineHeight: '1.8' }}>
-            Introducing robotics and electronics to government schools. Inspiring young learners with projects like Light Following Robots.
-          </p>
-        </div>
-        <div className="reveal">
-          <ParallaxImage src="/assets/image.png" alt="Outreach" height="80vh" />
+const Outreach = () => {
+  const leftColRef = useRef(null);
+  const imageRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      // Pin the image for exactly as long as the left column is scrolling
+      ScrollTrigger.create({
+        trigger: leftColRef.current,
+        start: 'top top+=100',
+        end: 'bottom bottom',
+        pin: imageRef.current,
+        pinSpacing: false,
+        anticipatePin: 1,
+      });
+    });
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <section
+      id="outreach"
+      style={{ background: '#0a0f1d', display: 'block', padding: '15vh 5%' }}
+    >
+      <div className="container px-5">
+        <div className="sticky-container">
+
+          {/* LEFT: scrolling content */}
+          <div ref={leftColRef} className="sticky-content">
+            <div className="reveal" style={{ marginBottom: '120px' }}>
+              <span className="section-tag">Social Impact</span>
+              <h2 style={{ fontSize: '4rem', marginBottom: '30px' }}>
+                <LineReveal>Educational Outreach</LineReveal>
+              </h2>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', lineHeight: '1.8' }}>
+                Introducing robotics and electronics to government schools. Inspiring young learners with projects like Light Following Robots.
+              </p>
+            </div>
+
+            <div className="reveal" style={{ marginBottom: '120px' }}>
+              <h3 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Bridging the Gap</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', lineHeight: '1.8' }}>
+                Our mission is to ensure that quality electronics education is not limited by resources. We bring the lab to the classroom, traveling to remote areas to provide hands-on experience with real components.
+              </p>
+            </div>
+
+            <div className="reveal" style={{ marginBottom: '120px' }}>
+              <h3 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Community Projects</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', lineHeight: '1.8' }}>
+                From basic LED circuits to complex robotics, we empower the next generation of engineers to build, fail, and learn. Our students have gone on to win regional science fairs and spark new interest in STEM careers.
+              </p>
+            </div>
+
+            <div className="reveal">
+              <h3 style={{ fontSize: '2.5rem', marginBottom: '20px' }}>Future Vision</h3>
+              <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', lineHeight: '1.8' }}>
+                We aim to reach 10,000 students by 2026, establishing permanent innovation hubs in rural districts across India.
+              </p>
+            </div>
+          </div>
+
+          {/* RIGHT: image pinned by ScrollTrigger */}
+          <div className="sticky-side">
+            <div ref={imageRef} className="sticky-media-wrap">
+              <img
+                src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&q=80&w=1200"
+                alt="Students doing hands-on electronics"
+              />
+            </div>
+          </div>
+
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const Services = () => (
   <section id="services">
@@ -393,11 +452,13 @@ const App = () => {
       smoothWheel: true,
     });
 
-    const raf = (time) => {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    };
-    requestAnimationFrame(raf);
+    // Official Lenis + GSAP ScrollTrigger integration
+    // gsap.ticker drives both Lenis and ScrollTrigger from the same clock
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add((time) => {
+      lenis.raf(time * 1000);
+    });
+    gsap.ticker.lagSmoothing(0);
 
     const ctx = gsap.context(() => {
       // Line reveal animation
@@ -430,6 +491,7 @@ const App = () => {
     return () => {
       ctx.revert();
       lenis.destroy();
+      gsap.ticker.remove(lenis.raf);
     };
   }, []);
 
