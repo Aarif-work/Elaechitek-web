@@ -148,26 +148,79 @@ const Navbar = () => {
   );
 };
 
-const Hero = () => (
-  <section id="home">
-    <div className="container">
-      <div style={{ maxWidth: '900px' }}>
-        <h1 className="hero-title">
-          <LineReveal>ELARCHITEK</LineReveal>
-        </h1>
-        <h2 className="hero-subtitle">
-          <LineReveal>Engineering the future.</LineReveal>
-        </h2>
-        <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', maxWidth: '600px', marginBottom: '40px' }} className="reveal">
-          An electronics education startup bridging the gap between textbook theory and hands-on discovery for everyone, based in Chennai.
-        </p>
-        <div className="reveal">
-          <button className="btn">See more</button>
+const Hero = () => {
+  const containerRef = useRef(null);
+  const linkImageRef = useRef(null);
+  const linkTextRef = useRef(null);
+
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      if (containerRef.current) {
+        const rect = containerRef.current.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        // Match user JS logic
+        if (linkTextRef.current) {
+          linkTextRef.current.style.setProperty('--x', `${x}px`);
+          linkTextRef.current.style.setProperty('--y', `${y}px`);
+        }
+        if (linkImageRef.current) {
+          linkImageRef.current.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+        }
+      }
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <section id="home" style={{ overflow: 'visible' }}>
+      <div className="container px-5">
+        <div style={{ maxWidth: '100%' }}>
+
+          <div className="hero-reveal-container" ref={containerRef}>
+            {/* Base Link Text */}
+            <a href="#" className="link-base">
+              ELARCHITEK
+            </a>
+
+            {/* Reveal Content Group */}
+            <div className="hover-container">
+              {/* White Reveal Text (Clipped) */}
+              <div ref={linkTextRef} className="link-text">
+                ELARCHITEK
+              </div>
+
+              {/* Image Portal (Follows mouse via translate3d) */}
+              <div className="image-container">
+                <div className="image-inner">
+                  <img
+                    ref={linkImageRef}
+                    src="/assets/image.png"
+                    alt="Hero Reveal"
+                    className="link-image"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <h2 className="hero-subtitle">
+            <LineReveal>Engineering the future.</LineReveal>
+          </h2>
+          <p style={{ color: 'var(--text-muted)', fontSize: '1.2rem', maxWidth: '600px', marginBottom: '40px' }} className="reveal">
+            An electronics education startup bridging the gap between textbook theory and hands-on discovery for everyone, based in Chennai.
+          </p>
+          <div className="reveal">
+            <button className="btn">See more</button>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 const About = () => (
   <section id="company">
