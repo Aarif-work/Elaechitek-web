@@ -119,14 +119,14 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'glass py-4' : 'py-8'}`} style={{ top: 0, left: 0 }}>
+    <nav className={`fixed z-50 transition-all duration-300 ${scrolled ? 'glass' : 'py-5'}`}>
       <div className="container px-5 flex justify-between items-center">
-        <a href="#" className="flex items-center gap-4 logo-wrap">
-          <div style={{ width: '50px', height: '50px', background: 'white', border: '1px solid rgba(0,0,0,0.1)', borderRadius: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 15px rgba(0,0,0,0.2)' }}>
-            <span style={{ fontSize: '0.6rem', color: '#000', fontWeight: 800, lineHeight: 1 }}>YOUR</span>
-            <span style={{ fontSize: '0.6rem', color: '#000', fontWeight: 800, lineHeight: 1 }}>LOGO</span>
+        <a href="#" className="flex items-center gap-4 logo-wrap group">
+          <div style={{ width: '45px', height: '45px', border: '2px solid white', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', transition: 'var(--transition)' }}>
+            <span style={{ fontSize: '0.65rem', color: '#fff', fontWeight: 800, lineHeight: 1 }}>EL</span>
+            <span style={{ fontSize: '0.65rem', color: '#fff', fontWeight: 800, lineHeight: 1 }}>AR</span>
           </div>
-          <span className="font-title text-xl tracking-tighter" style={{ display: scrolled ? 'none' : 'block' }}>ELARCHITEK</span>
+          <span className="font-title text-xl tracking-widest hidden lg:block">ELARCHITEK</span>
         </a>
 
         <div className="hidden md:flex items-center gap-10">
@@ -199,8 +199,8 @@ const Hero = () => {
                 <div className="image-inner">
                   <img
                     ref={linkImageRef}
-                    src="/assets/image.png"
-                    alt="Hero Reveal"
+                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1600"
+                    alt="Hero Reveal - Macro Electronics"
                     className="link-image"
                   />
                 </div>
@@ -215,7 +215,10 @@ const Hero = () => {
             An electronics education startup bridging the gap between textbook theory and hands-on discovery for everyone, based in Chennai.
           </p>
           <div className="reveal">
-            <button className="btn">See more</button>
+            <button className="btn">
+              Explore Kits
+              <ArrowUpRight size={18} style={{ marginLeft: '10px' }} />
+            </button>
           </div>
         </div>
       </div>
@@ -235,7 +238,7 @@ const About = () => (
           </p>
         </div>
         <div className="reveal" style={{ display: 'grid', gap: '15px' }}>
-          {["Gokul Kittusamy", "Arshitha Rajkumar", "Pushap Raj"].map((name, i) => (
+          {["Arshitha Rajkumar", "Pushap Raj"].map((name, i) => (
             <div key={i} className="glass" style={{ padding: '25px', borderRadius: '15px' }}>
               <h4 style={{ fontSize: '1.2rem' }}>{name}</h4>
               <p style={{ color: 'var(--accent)', fontSize: '0.8rem' }}>Co-Founder</p>
@@ -243,7 +246,7 @@ const About = () => (
           ))}
         </div>
       </div>
-      <ParallaxImage src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1600" alt="Tech" />
+      <ParallaxImage src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1600" alt="Tech Infrastructure" />
     </div>
   </section>
 );
@@ -273,7 +276,7 @@ const Kits = () => (
           </div>
         ))}
       </div>
-      <ParallaxImage src="https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&q=80&w=1600" alt="Electronics" />
+      <ParallaxImage src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&q=80&w=1600" alt="Electronic Components" />
     </div>
   </section>
 );
@@ -282,41 +285,41 @@ const InnovationHub = () => (
   <section id="innovation">
     <div className="container">
       <div className="mb-20 text-center">
-        <span className="section-tag">Research & Development</span>
-        <h2 style={{ fontSize: '4rem' }}><LineReveal>Innovation Hub</LineReveal></h2>
+        <span className="section-tag">Engineering Excellence</span>
+        <h2 style={{ fontSize: '4rem' }}><LineReveal>Electronic Architecture</LineReveal></h2>
       </div>
 
       <div className="cards-container">
         {[
           {
-            title: "DevOps",
-            content: "Streamlining electronic hardware production and firmware deployment pipelines for rapid iterative development.",
-            image: "https://cdn.pixabay.com/photo/2018/05/27/15/28/technology-3433708_960_720.jpg"
+            title: "System Blueprint",
+            content: "Architecting the foundational logic for complex electronic ecosystems, from power distribution to data pathways.",
+            image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800"
           },
           {
-            title: "Embedded ML",
-            content: "Integrating machine learning models directly into microcontrollers for intelligent sensor-based edge computing.",
-            image: "https://cdn.pixabay.com/photo/2019/11/23/04/52/matrix-4646234_960_720.jpg"
+            title: "Signal Purity",
+            content: "Precision PCB routing and signal integrity analysis to ensure noise-free communication across high-speed boards.",
+            image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=800"
           },
           {
-            title: "IoT Analytics",
-            content: "Collecting and analyzing real-time data from distributed sensor networks to provide actionable hardware insights.",
-            image: "https://cdn.pixabay.com/photo/2013/11/20/09/35/background-213649_960_720.jpg"
+            title: "Firmware Core",
+            content: "Developing low-latency, real-time operating environments optimized for mission-critical hardware responsiveness.",
+            image: "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=800"
           },
           {
-            title: "Hardware Crypto",
-            content: "Securing industrial communication through dedicated hardware encryption modules and silicon-level security.",
-            image: "https://cdn.pixabay.com/photo/2018/02/04/17/39/crypto-currency-3130381_960_720.jpg"
+            title: "Prototype Forge",
+            content: "Accelerating the journey from conceptual sketches to industrial-grade prototypes through rapid iterative hardware design.",
+            image: "https://images.unsplash.com/photo-1555664424-778a1e5e1b48?auto=format&fit=crop&q=80&w=800"
           },
           {
-            title: "Full-Stack HW",
-            content: "End-to-end development from custom PCB designs and firmware to cloud-connected management dashboards.",
-            image: "https://cdn.pixabay.com/photo/2016/04/13/19/20/binary-1327493_960_720.jpg"
+            title: "Edge Logic",
+            content: "Deploying sophisticated algorithms and machine learning models directly onto silicon for intelligent, autonomous systems.",
+            image: "https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?auto=format&fit=crop&q=80&w=800"
           },
           {
-            title: "Cyber Security",
-            content: "Protecting embedded systems against physical and remote vulnerabilities through rigorous precision testing.",
-            image: "https://cdn.pixabay.com/photo/2019/12/17/05/53/security-4700815_960_720.jpg"
+            title: "Hardware Security",
+            content: "Implementing silicon-level protection, secure boot protocols, and dedicated encryption modules for robust IP safety.",
+            image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&q=80&w=800"
           }
         ].map((item, i) => (
           <TiltCard key={i} {...item} />
@@ -391,8 +394,8 @@ const Outreach = () => {
           <div className="sticky-side">
             <div ref={imageRef} className="sticky-media-wrap">
               <img
-                src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&q=80&w=1200"
-                alt="Students doing hands-on electronics"
+                src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1200"
+                alt="STEM Education Workshop"
               />
             </div>
           </div>
@@ -427,34 +430,109 @@ const Services = () => (
   </section>
 );
 
-const Footer = () => (
-  <footer style={{ padding: '100px 5%', borderTop: '1px solid rgba(255,255,255,0.1)' }}>
-    <div className="container flex flex-col items-center text-center">
-      <div style={{ width: '80px', height: '80px', background: 'white', borderRadius: '50%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginBottom: '40px' }}>
-        <span style={{ fontSize: '0.6rem', color: '#000', fontWeight: 800 }}>LOGO</span>
+const Footer = () => {
+  const triggerRef = useRef(null);
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      gsap
+        .timeline({
+          scrollTrigger: {
+            trigger: triggerRef.current,
+            scrub: 0.5,
+            pin: true,
+            start: 'top top',
+            end: '+=150%',
+          },
+        })
+        .to('.blinds-box', {
+          force3D: true,
+          duration: 1,
+          xPercent: 100,
+          ease: 'power1.inOut',
+          stagger: { amount: 1 },
+        })
+        .to('.blinds-box', { ease: 'power1.out', duration: 1, rotation: '45deg' }, 0)
+        .to('.blinds-box', { ease: 'power1.in', duration: 1, rotation: '0deg' }, 1);
+    }, triggerRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <>
+      {/* Staggered Blinds Reveal */}
+      <div ref={triggerRef} className="blinds-trigger">
+        {/* Boxes first so labels naturally stack on top or use explicit z-index */}
+        <div className="blinds-wrapper">
+          {Array.from({ length: 100 }).map((_, i) => (
+            <div key={i} className="blinds-box" />
+          ))}
+        </div>
+        <span className="blinds-label blinds-down">Architecting<br />Tomorrow</span>
+        <span className="blinds-label blinds-up">Back to<br />The Logic</span>
       </div>
-      <div style={{ display: 'flex', gap: '30px', marginBottom: '40px' }}>
-        <Linkedin color="white" />
-        <Instagram color="white" />
-      </div>
-      <p style={{ color: 'var(--text-muted)' }}>&copy; 2024 ELARCHITEK Chennai. All Rights Reserved.</p>
-    </div>
-  </footer>
-);
+
+      {/* Actual Footer */}
+      <footer style={{ padding: '100px 5%', borderTop: '1px solid rgba(255,255,255,0.1)', background: 'var(--bg)' }}>
+        <div className="container flex flex-col items-center text-center">
+          <div style={{ width: '70px', height: '70px', border: '2px solid white', borderRadius: '15px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', marginBottom: '40px' }}>
+            <span style={{ fontSize: '0.8rem', color: '#fff', fontWeight: 800, lineHeight: 1 }}>EL</span>
+            <span style={{ fontSize: '0.8rem', color: '#fff', fontWeight: 800, lineHeight: 1 }}>AR</span>
+          </div>
+          <h2 style={{ fontSize: '3rem', marginBottom: '20px', fontFamily: 'var(--font-title)' }}>ELARCHITEK</h2>
+          <p style={{ color: 'var(--text-muted)', maxWidth: '650px', marginBottom: '40px', lineHeight: 1.8, fontSize: '1.1rem' }}>
+            Bridging the gap between theory and discovery. We are a Chennai-based collective of engineers and educators dedicated to redefining STEM education through hands-on architectural electronics and industrial-grade prototyping kits.
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '60px', marginBottom: '60px', textAlign: 'left', width: '100%', maxWidth: '900px' }}>
+            <div>
+              <h4 style={{ color: 'var(--accent)', marginBottom: '15px', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Visions</h4>
+              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)' }}>Empowering the next generation of silicon architects through practical, hands-on discovery.</p>
+            </div>
+            <div>
+              <h4 style={{ color: 'var(--accent)', marginBottom: '15px', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Locations</h4>
+              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)' }}>Headquartered in Chennai, India.<br />Serving educational hubs nationwide.</p>
+            </div>
+            <div>
+              <h4 style={{ color: 'var(--accent)', marginBottom: '15px', fontSize: '0.9rem', textTransform: 'uppercase', letterSpacing: '2px' }}>Connect</h4>
+              <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.6)' }}>hello@elarchitek.com<br />+91 (0) 44 2837 4920</p>
+            </div>
+          </div>
+          <div style={{ display: 'flex', gap: '30px', marginBottom: '40px' }}>
+            <Linkedin color="white" style={{ cursor: 'pointer' }} />
+            <Instagram color="white" style={{ cursor: 'pointer' }} />
+          </div>
+          <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem' }}>&copy; 2024 ELARCHITEK Chennai. Pioneering Electronic Architecture.</p>
+        </div>
+      </footer>
+    </>
+  );
+};
 
 const App = () => {
   const containerRef = useRef(null);
 
   useLayoutEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.5,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
       smoothWheel: true,
+      wheelMultiplier: 1,
+      smoothTouch: false,
+      touchMultiplier: 2,
+      infinite: false,
     });
 
     // Official Lenis + GSAP ScrollTrigger integration
     // gsap.ticker drives both Lenis and ScrollTrigger from the same clock
-    lenis.on('scroll', ScrollTrigger.update);
+    lenis.on('scroll', () => {
+      ScrollTrigger.update();
+      // Update scroll progress bar
+      const progress = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      document.documentElement.style.setProperty('--scroll-progress', `${progress}%`);
+    });
     gsap.ticker.add((time) => {
       lenis.raf(time * 1000);
     });
@@ -497,6 +575,9 @@ const App = () => {
 
   return (
     <div ref={containerRef} className="app">
+      <div className="scroll-progress-wrap">
+        <div className="scroll-progress-bar"></div>
+      </div>
       <Navbar />
       <Hero />
       <About />
